@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+
+</head>
+<body>
+    
+<header class="header">
+
+    <div id="menu-btn" class="fas fa-bars"></div>
+
+    <a href="#" class="logo"> <span>max</span>wheels </a>
+
+    <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="#vehicles">vehicles</a>
+        <a href="#featured">featured</a>
+        <a href="#reviews">reviews</a>
+        <a href="#contact">location</a>
+        
+
+    </nav>
+
+    <div id="login-btn" >
+        
+        <a  class="btn" href="{{url_for('base')}}" >logout</a>
+             
+        <i class="far fa-user"></i>
+    </div>
+
+</header> 
+    
+<div class="login-form-container"> 
+
+    <!--<span id="close-login-form" class="fas fa-times"></span>-->
+
+    <!--<form action="#">
+        <h3>user login</h3>
+        <input type="email" placeholder="email" class="box">
+        <input type="password" placeholder="password" class="box">
+        <p> forget your password <a href="#">click here</a> </p>
+        <input type="submit" value="login" class="btn">
+        <div id="login-btn">
+        <button class="btn">login</button>
+        <i class="far fa-user"></i>
+        </div>
+        <div class="signup-box">
+                <input type="text" 
+                       class="name ele" 
+                       placeholder="Enter your name">
+                <input type="email" 
+                       class="email ele" 
+                       placeholder="youremail@email.com">
+                <input type="password" 
+                       class="password ele" 
+                       placeholder="password">
+                <input type="password" 
+                       class="password ele" 
+                       placeholder="Confirm password">
+                <button class="clkbtn">Signup</button>
+            </div>
+    </form>-->
+
+</div>
+
+<section class="home" id="home">
+
+    <h3 data-speed="-2" class="home-parallax">find your car</h3>
+
+    <img data-speed="5" class="home-parallax" src="{{url_for('static', filename='images/home-img.png')}}" alt="">
+
+    
+
+</section>
+
+
+
+<section class="vehicles" id="vehicles">
+
+    <h1 class="heading"> popular <span>vehicles</span> </h1>
+
+    <div class="swiper vehicles-slider">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide box">
+                <img src="{{url_for('static',filename='images/vehicle-1.png')}}" alt="">
+                <div class="content">
+                    <h3>new model</h3>
+                    <div class="price"> <span>price : </span> Rs.42,000/day </div>
+                    <p>
+                        new
+                        <span class="fas fa-circle"></span> 2021
+                        <span class="fas fa-circle"></span> automatic
+                        <span class="fas fa-circle"></span> petrol
+                        <span class="fas fa-circle"></span> 183mph
+                    </p>
+                    <a href="{{url_for('rent')}}" class="btn">Rent now</a>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="{{url_for('static',filename='images/vehicle-2.png')}}" alt="">
+                <div class="content">
+                    <h3>new model</h3>
+                    <div class="price"> <span>price : </span> Rs.33,000/day </div>
+                    <p>
+                        new
+                        <span class="fas fa-circle"></span> 2021
+                        <span class="fas fa-circle"></span> automatic
+                        <span class="fas fa-circle"></span> petrol
+                        <span class="fas fa-circle"></span> 183mph
+                    </p>
+                    <a href="#" class="btn">Rent now</a>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="{{url_for('static',filename='images/vehicle-3.png')}}" alt="">
+                <div class="content">
+                    <h3>new model</h3>
+                    <div class="price"> <span>price : </span> Rs.22,000/day </div>
+                    <p>
+                        new
+                        <span class="fas fa-circle"></span> 2021
+                        <span class="fas fa-circle"></span> automatic
+                        <span class="fas fa-circle"></span> petrol
+                        <span class="fas fa-circle"></span> 183mph
+                    </p>
+                    <a href="#" class="btn">Rent now</a>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="{{url_for('static',filename='images/vehicle-4.png')}}" alt="">
+                <div class="content">
+                    <h3>new model</h3>
+                    <div class="price"> <span>price : </span> Rs.43,000/day </div>
+                    <p>
+                        new
+                        <span class="fas fa-circle"></span> 2021
+                        <span class="fas fa-circle"></span> automatic
+                        <span class="fas fa-circle"></span> petrol
+                        <span class="fas fa-circle"></span> 183mph
+                    </p>
+                    <a href="#" class="btn">Rent now</a>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="{{url_for('static',filename='images/vehicle-5.png')}}" alt="">
+                <div class="content">
+                    <h3>new model</h3>
+                    <div class="price"> <span>price : </span> Rs.32,000/day </div>
+                    <p>
+                        new
+                        <span class="fas fa-circle"></span> 2021
+                        <span class="fas fa-circle"></span> automatic
+                        <span class="fas fa-circle"></span> petrol
+                        <span class="fas fa-circle"></span> 183mph
+                    </p>
+                    <a href="#" class="btn">Rent now</a>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="{{url_for('static',filename='images/vehicle-6.png')}}" alt="">
+                <div class="content">
+                    <h3>new model</h3>
+                    <div class="price"> <span>price : </span> Rs.22,000/day </div>
+                    <p>
+                        new
+                        <span class="fas fa-circle"></span> 2021
+                        <span class="fas fa-circle"></span> automatic
+                        <span class="fas fa-circle"></span> petrol
+                        <span class="fas fa-circle"></span> 183mph
+                    </p>
+                    <a href="#" class="btn">Rent now</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="swiper-pagination"></div>
+
+    </div>
+
+</section>
+
+
+
+<!--<div class="container">
+
+    <form action="">
+
+        <div class="row">
+
+            <div class="col">
+
+                <h3 class="title">Rent Now</h3>
+
+                <div class="inputBox">
+                    <span>full name :</span>
+                    <input type="text" placeholder="john deo">
+                </div>
+                <div class="inputBox">
+                    <span>email :</span>
+                    <input type="email" placeholder="example@example.com">
+                </div>
+                <div class="inputBox">
+                    <span>pick-up location :</span>
+                    <input type="text" placeholder="room - street - locality">
+                </div>
+                <div class="inputBox">
+                    <span>drop location :</span>
+                    <input type="text" placeholder="mumbai">
+                </div>
+
+                
+
+            </div>
+
+            <div class="col">
+
+                <h3 class="title">payment</h3>
+
+               
+                <div class="inputBox">
+                    <span>name on card :</span>
+                    <input type="text" placeholder="mr. john deo">
+                </div>
+                <div class="inputBox">
+                    <span>credit card number :</span>
+                    <input type="number" placeholder="1111-2222-3333-4444">
+                </div>
+                <div class="inputBox">
+                    <span>Date :</span>
+                    <input type="date" placeholder="DD-MM-YYYY">
+                </div>
+
+                <div class="flex">
+                    <div class="inputBox">
+                        <span>exp year :</span>
+                        <input type="number" placeholder="2022">
+                    </div>
+                    <div class="inputBox">
+                        <span>CVV :</span>
+                        <input type="text" placeholder="1234">
+                    </div>
+                </div>
+
+            </div>
+    
+        </div>
+
+        <input type="submit" value="Proceed to Rent Now" class="submit-btn">
+
+    </form>
+
+</div>  --> 
+    
+
+<section class="featured" id="featured">
+
+    <h1 class="heading"> <span>featured</span> cars </h1>
+
+    <div class="swiper featured-slider">
+
+       <div class="swiper-wrapper">
+
+            <div class="swiper-slide box">
+                <img src="{{url_for('static', filename='images/car-1.png')}}" alt="">
+                <div class="content">
+                    <h3>Benz SL-class</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="price">Rs.44,000/day</div>
+                    <a href="#" class="btn">Rent Now</a>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="{{url_for('static', filename='images/car-2.png')}}" alt="">
+                <div class="content">
+                    <h3>MG HS</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="price">Rs.35,000/day</div>
+                    <a href="#" class="btn">Rent Now</a>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="{{url_for('static', filename='images/car-3.png')}}" alt="">
+                <div class="content">
+                    <h3>Ford Focus</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="price">Rs.25,000/day</div>
+                    <a href="#" class="btn">Rent Now</a>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="{{url_for('static', filename='images/car-4.png')}}" alt="">
+                <div class="content">
+                    <h3>Audi Q8</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="price">Rs.35,000/day</div>
+                    <a href="#" class="btn">Rent Now</a>
+                </div>
+            </div>
+
+       </div>
+
+       <div class="swiper-pagination"></div>
+
+    </div>
+
+    <div class="swiper featured-slider">
+
+        <div class="swiper-wrapper">
+ 
+             <div class="swiper-slide box">
+                 <img src="{{url_for('static', filename='images/car-5.png')}}" alt="">
+                 <div class="content">
+                     <h3>KIA sportage</h3>
+                     <div class="stars">
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star-half-alt"></i>
+                     </div>
+                     <div class="price">Rs.33,000/day</div>
+                     <a href="#" class="btn">Rent Now</a>
+                 </div>
+             </div>
+ 
+             <div class="swiper-slide box">
+                 <img src="{{url_for('static', filename='images/car-6.png')}}" alt="">
+                 <div class="content">
+                     <h3>Honda civic</h3>
+                     <div class="stars">
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star-half-alt"></i>
+                     </div>
+                     <div class="price">Rs.45,000/day</div>
+                     <a href="#" class="btn">Rent Now</a>
+                 </div>
+             </div>
+ 
+             <div class="swiper-slide box">
+                 <img src="{{url_for('static', filename='images/car-7.png')}}" alt="">
+                 <div class="content">
+                     <h3>KIA sorento</h3>
+                     <div class="stars">
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star-half-alt"></i>
+                     </div>
+                     <div class="price">Rs.55,000/day</div>
+                     <a href="#" class="btn">Rent Now</a>
+                 </div>
+             </div>
+ 
+             <div class="swiper-slide box">
+                 <img src="{{url_for('static', filename='images/car-8.png')}}" alt="">
+                 <div class="content">
+                     <h3>SUV</h3>
+                     <div class="stars">
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star-half-alt"></i>
+                     </div>
+                     <div class="price">Rs.33,000/day</div>
+                     <a href="#" class="btn">Rent Now</a>
+                 </div>
+             </div>
+ 
+        </div>
+ 
+        <div class="swiper-pagination"></div>
+ 
+     </div>
+
+</section>
+
+
+
+<section class="reviews" id="reviews">
+
+    <h1 class="heading"> client's <span>review</span> </h1>
+
+    <div class="swiper review-slider">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide box">
+                <img src="{{url_for('static', filename='images/pic-1.png')}}" alt="">
+                <div class="content">
+                    <p>Dealer (Marc) responded promptly, answered all my questions. Marc was very accommodating. Pleasure to business with Chignoli. Thank You!</p>
+                    <h3>john </h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="{{url_for('static', filename='images/pic-2.png')}}" alt="">
+                <div class="content">
+                    <p>this has become our family member right from the time of purchase. excellent suspension especially in bumpy roads.</p>
+                    <h3>Chandu</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="{{url_for('static', filename='images/pic-3.png')}}" alt="">
+                <div class="content">
+                    <p>super quiet engine, powerfull ac and excellent speaker system makes this car an ideal companion for city as well on highway. can go for this without second thought.</p>
+                    <h3>Suhas</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="{{url_for('static', filename='images/pic-4.png')}}" alt="">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam incidunt quod praesentium iusto id autem possimus assumenda at ut saepe.</p>
+                    <h3>Saritha</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="{{url_for('static', filename='images/car-6.png')}}" alt="">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam incidunt quod praesentium iusto id autem possimus assumenda at ut saepe.</p>
+                    <h3>Kiran</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="{{url_for('static', filename='images/pic-6.png')}}" alt="">
+                <div class="content">
+                    <p>this has become our family member right from the time of purchase. excellent suspension especially in bumpy roads.</p>
+                    <h3>supriya</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="swiper-pagination"></div>
+
+    </div>
+
+</section>
+
+<section class="contact" id="contact">
+
+    <h1 class="heading"><span>contact</span> us</h1>
+
+    <div class="row">
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d122409.99752894918!2d80.57484275041833!3d16.510317727482697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35eff9482d944b%3A0x939b7e84ab4a0265!2sVijayawada%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1672129872892!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        <form action="">
+            <h3>get in touch</h3>
+            <input type="text" placeholder="your name" class="box">
+            <input type="email" placeholder="your email" class="box">
+            <input type="tel" placeholder="subject" class="box">
+            <textarea placeholder="your message" class="box" cols="30" rows="10"></textarea>
+            <input type="submit" value="send message" class="btn">
+        </form>
+
+    </div>
+
+</section>
+
+<section class="footer" id="footer">
+
+    <div class="box-container">
+
+       
+
+       
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="#"> <i class="fas fa-phone"></i> +91 8436285929 </a>
+            <a href="#"> <i class="fas fa-phone"></i> +91 8547873484 </a>
+            <a href="#"> <i class="fas fa-envelope"></i> shaikhanas@gmail.com </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> Vijayawada, Guntur - 522503 </a>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+            <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+            <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+            <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
+            <a href="#"> <i class="fab fa-pinterest"></i> pinterest </a>
+        </div>
+
+    </div>
+
+    <div class="credit"> created by Sasikala |Lavanya | all rights reserved </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<script src="{{url_for('static',filename='js/script.js')}}"></script>
+
+</body>
+</html>
