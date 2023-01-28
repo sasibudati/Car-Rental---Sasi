@@ -275,28 +275,9 @@
 <body  onload="setRand()">
   <div class="login-box" >
     <h1 style="color:aqua">Fill The Details</h1>
-     <form action="{{ url_for('rent') }}" method="post" >
-      
-      <div class="user-box">
-        <input type="hidden" name="rent_id" id="rand" required>
-        <input type="text" name="user_id" placeholder="Enter your userID"  required>
-        <input type="hidden" name="car_id" value="11" required>
-      </div>
-    
+     <form action="{{ url_for('rent',carid=carid,price=price) }}" method="post" >
       <div class="user-box">
          <input type="text" placeholder="Enter No of days" name="no_of_days" required>
-      </div>
-
-      <div class="user-box">
-         <input type="text" placeholder="Enter your Age" name="age" required>
-      </div>
-
-      <div class="user-box">
-         <input type="time" placeholder="Enter Checkin time" name="checkin" required>
-      </div>
-
-      <div class="user-box">
-         <input type="time" placeholder="Enter Checkout time" name="checkout" required>
       </div>
       <button>
       <span></span>
@@ -337,3 +318,4 @@ function setRand(){
 
 </body>
 </html>
+
