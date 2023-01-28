@@ -2,15 +2,18 @@ from flask import Flask, render_template,redirect,url_for,request,session
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re
+import stripe
+stripe.api_key = "sk_test_51MMsHhSGj898WTbYXSx509gD14lhhXs8Hx8ipwegdytPB1Bkw0lJykMB0yGpCux95bdw1Gk9Gb9nJIWzPEEDxSqf00GEtCqZ8Y"
 
 app = Flask(__name__)
 
 app.secret_key = 'gbdvfrs'
 
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] ='LocalHost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_PASSWORD'] = 'sasikala@123'
 app.config['MYSQL_DB'] = 'our_users'
+
 
 mysql = MySQL(app)
 
@@ -31,9 +34,8 @@ def login():
             session['loggedin'] = True
             session['Username'] = user['name']
             session['email'] = user['email']
-            
+            session['id']=user['user_id']
             session['Age'] = user['Age']
-            session['License ID'] = user['License']
             return render_template("home.html")
         else:
             message ='Please enter correct emai / password ! '
@@ -49,7 +51,8 @@ def signup():
         email = request.form['email']
         password = request.form['password']
         number = request.form['number']
-        license = request.form['License']
+        license = request.files['License']
+        filename=license.filename
         age = request.form['Age']
         gender=request.form['Gender']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -59,46 +62,62 @@ def signup():
            mesage = 'Account already exists!'
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
             mesage = 'Invalid email address !'
-        elif not Username or not password or not id or not license or not number or not email:
-            mesage = 'Please fill out the form !'
         else:
-            cursor.execute('INSERT INTO user VALUES ( % s, % s, % s, %s, %s, %s, %s, %s)', (Username, id, email, password, number, license, age, gender))
+            cursor.execute('INSERT INTO user VALUES ( % s, % s, % s, %s, %s, %s, %s, %s,%s)', (Username, id, email, password, number,filename,license.read(),age,gender))
             mysql.connection.commit()
             mesage = 'You have successfully registered !'
     elif request.method == 'POST':
         mesage = 'Please fill out the form !'
     return render_template('signup.html', mesage = mesage)
+
     
 
 @app.route('/home')
 def home():
     return render_template("home.html")
-
-
-@app.route('/rent', methods=["GET", "POST"])
-def rent():
-
+@app.route('/orders')
+def orders():
+    cursor=mysql.connection.cursor()
+    cursor.execute('select date,rent_id,car_id,no_of_days,price from rent where user_id=%s',[session.get('id')])
+    data=cursor.fetchall()
+    return render_template('table.html',data=data)
+@app.route('/success/<carid>/<noofdays>/<price>')
+def success_pay(carid,noofdays,price):
     mesage = ''
-    if request.method == 'POST' and 'no_of_days' in request.form and 'age' in request.form and 'checkin' in request.form and 'checkout' in request.form :
-        rentid= request.form['rent_id']
-        userid = request.form['user_id']
-        carid = request.form['car_id']
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    pricet=int(noofdays)*int(price)
+    d=session.get('Username')
+    print(d)
+    cursor.execute('INSERT INTO rent(user_id,car_id,no_of_days,price) VALUES(%s,%s,%s,%s)',(session.get('id'),carid,noofdays,pricet))
+    mysql.connection.commit()
+    mesage = 'Details entered successfully !'
+    return render_template("rent.html") 
+
+@app.route('/pay/<carid>/<noofdays>/<price>',methods=['GET','POST'])
+def pay(carid,noofdays,price):
+    checkout_session=stripe.checkout.Session.create(
+        success_url=request.host_url+url_for('success_pay',carid=carid,noofdays=noofdays,price=price),
+        line_items=[
+            {
+                'price_data': {
+                    'product_data': {
+                        'name': f'Payment for {carid} --({noofdays})',
+                    },
+                    'unit_amount': int(price)*100,
+                    'currency': 'inr',
+                },
+                'quantity': noofdays,
+            },
+            ],
+        mode="payment",)
+    return redirect(checkout_session.url)
+@app.route('/rent/<carid>/<price>', methods=["GET", "POST"])
+def rent(carid,price):
+    mesage = ''
+    if request.method == 'POST' :
         noofdays = request.form['no_of_days']
-        age = request.form['age']
-        checkin = request.form['checkin']
-        checkout = request.form['checkout']
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT rent_id="%s", user_id="%s", car_id="%s", no_of_days="%s", age="%s", checkin="%s", checkout="%s"    FROM rent;', (rentid, userid, carid, noofdays, age, checkin, checkout))
-        account = cursor.fetchone()
-        if account is not None:
-            mesage = 'Enter all the  details properly!'
-        elif not rentid or not userid or not carid or not noofdays or not age or not checkin or not checkout:
-            mesage = 'Please fill out the form !'
-        else:
-            cursor.execute('INSERT INTO rent VALUES ( % s, % s, % s, %s, %s, %s, %s)', (rentid, userid, carid, noofdays, age, checkin, checkout))
-            mysql.connection.commit()
-            mesage = 'Details entered successfully !'
-    return render_template("rent.html")
+        return redirect(url_for('pay',carid=carid,noofdays=noofdays,price=price))
+    return render_template("rent.html",carid=carid,price=price)
 
 @app.route('/logout')
 def logout():
@@ -109,5 +128,8 @@ def logout():
     return redirect(url_for('login'))
 
 
+@app.route('/adminlogin')
+def adminlogin():
+    return render_template('table.html')
 if __name__ == '__main__':
     app.run(debug=True)
